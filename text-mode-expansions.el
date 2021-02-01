@@ -43,7 +43,9 @@
 (defun er/mark-text-paragraph ()
   "Marks one paragraph."
   (interactive)
-  (mark-paragraph)
+  (forward-paragraph)
+  (set-mark (point))
+  (backward-paragraph)
   (skip-chars-forward er--space-str))
 
 (defun er/add-text-mode-expansions ()
