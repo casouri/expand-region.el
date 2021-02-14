@@ -254,15 +254,6 @@ remove the keymap depends on user input and KEEP-PRED:
 
       (push alist emulation-mode-map-alists))))
 
-(defadvice keyboard-quit (before collapse-region activate)
-  (when (memq last-command '(er/expand-region er/contract-region))
-    (er/contract-region 0)))
-
-(defadvice minibuffer-keyboard-quit (around collapse-region activate)
-  (if (memq last-command '(er/expand-region er/contract-region))
-      (er/contract-region 0)
-    ad-do-it))
-
 (defadvice cua-cancel (before collapse-region activate)
   (when (memq last-command '(er/expand-region er/contract-region))
     (er/contract-region 0)))
